@@ -1,12 +1,15 @@
 # Distribuging candy..
 
+## This question is in English. Let's keep reading skills as well!!
+
+
 Alice is a kindergarten teacher. She wants to give some candies to the children in her class.  All the children sit in a line and each of them has a rating score according to his or her performance in the class.  Alice wants to give at least 1 candy to each child. If two children sit next to each other, then the one with the higher rating must get more candies. Alice wants to minimize the total number of candies she must buy.
 
 For example, assume her students' ratings are [4, 6, 4, 5, 6, 2]. She gives the students candy in the following minimal amounts: [1, 2, 1, 2, 3, 1]. She must buy a minimum of 10 candies.
 
  
 
-###Function Description
+### Function Description
 
 Complete the candies function in the editor below. It must return the minimum number of candies Alice must buy.
 
@@ -18,21 +21,21 @@ candies has the following parameter(s):
 
  
 
-###Input Format
+### Input Format
 
 The first line contains an integer, , the size of . 
 Each of the next  lines contains an integer  indicating the rating of the student at position .
 
  
 
-###Constraints
+### Constraints
 
 ·    1 <= n <= 10^5
 
 ·    1 <= arr[i] <= 10^5
 
 
-###Output Format
+### Output Format
 
 Output a single line containing the minimum number of candies Alice must buy.
 
@@ -42,7 +45,7 @@ Output a single line containing the minimum number of candies Alice must buy.
 
 ## Sample 1 
 
-###Input
+### Input
 ``` sh
 3
 
@@ -53,12 +56,12 @@ Output a single line containing the minimum number of candies Alice must buy.
 2
 ```
 
-###Output
+### Output
 ``` sh
 4
 ```
 
-###Explanation
+### Explanation
 
 Here 1, 2, 2 is the rating. Note that when two children have equal rating, they are allowed to have different number of candies. Hence optimal distribution will be 1, 2, 1.
 
@@ -68,7 +71,7 @@ Here 1, 2, 2 is the rating. Note that when two children have equal rating, they 
 
 ## Sample 2
 
-###Input
+### Input
 ``` sh
 10
 
@@ -92,11 +95,11 @@ Here 1, 2, 2 is the rating. Note that when two children have equal rating, they 
 
 1
 ```
-###Output
+### Output
 ``` sh
 19
 ```
-###Explanation
+### Explanation
 
 Optimal distribution will be 1,2,1,2,1,2,3,4,2,1
 
@@ -106,7 +109,7 @@ Optimal distribution will be 1,2,1,2,1,2,3,4,2,1
  
 ## Sample 3
 
-###Input
+### Input
 ``` sh
 8
 
@@ -127,12 +130,12 @@ Optimal distribution will be 1,2,1,2,1,2,3,4,2,1
 5
 ```
 
-###Output
+### Output
 ``` sh
 12
 ```
 
-###Explanation
+### Explanation
 
 Optimal distribution will be 1,2,1,2,1,2,1,2
 
@@ -140,7 +143,7 @@ Optimal distribution will be 1,2,1,2,1,2,1,2
  
 ## Sample 4
 
-###Input
+### Input
 ``` sh
 8
 
@@ -161,12 +164,12 @@ Optimal distribution will be 1,2,1,2,1,2,1,2
 52081
 ```
 
-###Output
+### Output
 ``` sh
 14
 ```
 
-###Explanation 
+### Explanation 
 
 Optimal distribution will be 3,2,1,2,1,2,1,2
 
@@ -175,11 +178,11 @@ Optimal distribution will be 3,2,1,2,1,2,1,2
  
 ## Sample 5
 
-###Input
+### Input
 ``` sh
 See attachment file.
 ```
-###Output
+### Output
 ``` sh
 42105
 ```
