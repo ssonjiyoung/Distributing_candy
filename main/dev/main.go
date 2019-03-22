@@ -12,10 +12,12 @@ import (
 var CandyAmount []int
 var total int
 
-// 뒷쪽 아이와 비교하여 내 캔디개수 변경
+// [ 뒷쪽 아이와 비교하여 뒤쪽아이 캔디개수 변경 ]
+// 내 스코어가 뒷쪽아이 스코어보다 작은데
+// 내 캔디수가 뒷쪽아이 사탕보다 같거나 크면
+// 뒷쪽아이 캔디수 하나 더 주고 다시 그 뒤아이로..
 func adjustCandy(i int, arr []int32, candyCount []int) {
 	if i < 0 { return }
-	// 내 랭킹이 뒷쪽아이보다 높은데, 캔디가 같거나 작다면 내꺼 하나 증가시키고 다시 앞쪽 비교
 	if (arr[i] > arr[i+1]) && (candyCount[i] <= candyCount[i+1]) { candyCount[i]++;	adjustCandy(i-1, arr, candyCount) }
 	return
 }
@@ -61,7 +63,7 @@ func main() {
 	// 캔디개수 배열
 	CandyAmount = make([]int, n)
 
-	// 맨 앞 사람에게 1개 줌
+	// 맨 앞 사람에게 1개 줌 (default 1개)
 	CandyAmount[0] = 1
 
 	result := candies(n, arr)
