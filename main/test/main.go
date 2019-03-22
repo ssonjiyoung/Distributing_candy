@@ -33,10 +33,11 @@ func candies(n int32, arr []int32) int64 {
 	// 내 캔디의 개수를 정함
 	for i := 1; i < int(n); i++ {
 		// 앞에 사람보다 내 랭킹이 높으면 캔디 + 1, 그 밖에는 1개만 주고, 앞쪽 아이들 조정
+		candyCount[i] = 1
 		if arr[i] > arr[i-1] {
 			candyCount[i] = candyCount[i-1] + 1
 		} else {
-			candyCount[i] = 1
+
 			adjustCandy(i-1, arr, candyCount)
 		}
 	}

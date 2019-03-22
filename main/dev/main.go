@@ -24,11 +24,9 @@ func adjustCandy(i int, arr []int32, candyCount []int) {
 // arr is 여러 아이의 score array
 func candies(n int32, arr []int32) int64 {
 
-	for i := 1; i < int(n); i++ { if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] { CandyAmount[i] = CandyAmount[i-1] + 1 } }
-	fmt.Println(CandyAmount)
+	for i := 1; i < int(n); i++ { CandyAmount[i] = 1; if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] { CandyAmount[i] = CandyAmount[i-1] + 1 } }
 
-	total = sum(CandyAmount)
-	return int64(total)
+	return int64(sum(CandyAmount))
 }
 
 func sum(score []int) int {
