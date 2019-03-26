@@ -17,22 +17,35 @@ var total int
 // 내 캔디수가 뒷쪽아이 사탕보다 같거나 크면
 // 뒷쪽아이 캔디수 하나 더 주고 다시 그 뒤아이로..
 func adjustCandy(i int, arr []int32, candyCount []int) {
-	if i < 0 { return }
-	if (arr[i] > arr[i+1]) && (candyCount[i] <= candyCount[i+1]) { candyCount[i]++;	adjustCandy(i-1, arr, candyCount) }
+	if i < 0 {
+		return
+	}
+	if (arr[i] > arr[i+1]) && (candyCount[i] <= candyCount[i+1]) {
+		candyCount[i]++
+		adjustCandy(i-1, arr, candyCount)
+	}
 	return
 }
+
 // Complete the candies function below.
 // n is 아이수
 // arr is 여러 아이의 score array
 func candies(n int32, arr []int32) int64 {
 
-	for i := 1; i < int(n); i++ { CandyAmount[i] = 1; if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] { CandyAmount[i] = CandyAmount[i-1] + 1 } }
+	for i := 1; i < int(n); i++ {
+		CandyAmount[i] = 1
+		if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] {
+			CandyAmount[i] = CandyAmount[i-1] + 1
+		}
+	}
 
 	return int64(sum(CandyAmount))
 }
 
 func sum(score []int) int {
-	for i := 0; i < len(score); i++ { total += score[i] }
+	for i := 0; i < len(score); i++ {
+		total += score[i]
+	}
 	return total
 }
 
@@ -69,7 +82,6 @@ func main() {
 	result := candies(n, arr)
 
 	fmt.Println(result)
-
 
 }
 func readLine(reader *bufio.Reader) string {
