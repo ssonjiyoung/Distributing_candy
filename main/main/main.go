@@ -9,85 +9,81 @@ import (
 	"strings"
 )
 
-var score []int32
+var CandyAmount []int
+var total int
+
+// [ 뒷쪽 아이와 비교하여 뒤쪽아이 캔디개수 변경 ]
+// 내 스코어가 뒷쪽아이 스코어보다 작은데
+// 내 캔디수가 뒷쪽아이 사탕보다 같거나 크면
+// 뒷쪽아이 캔디수 하나 더 주고 다시 그 뒤아이로..
+func adjustCandy(i int, arr []int32, candyCount []int) {
+	if i < 0 {
+		return
+	}
+	if (arr[i] > arr[i+1]) && (candyCount[i] <= candyCount[i+1]) {
+		candyCount[i]++
+		adjustCandy(i-1, arr, candyCount)
+	}
+	return
+}
 
 // Complete the candies function below.
 // n is 아이수
 // arr is 여러 아이의 score array
 func candies(n int32, arr []int32) int64 {
 
-	// 여기에 구현하세요.
-	// distributing candy
-	fmt.Println(len(score))
-	for i := 0; i < int(n); i++ {
-		if arr[i] > arr[i+1] {
-			score[i]++
-		} else if arr[i] < arr[i+1] {
-
-			score[i+1]++
-		} else {
-			if i == 0 {
-				score[i]++
-			} else {
-				for j := i; j >= 0; j-- {
-					score[i] = score[i-1]
-					score[i]++
-				}
-
-			}
+	for i := 1; i < int(n); i++ {
+		CandyAmount[i] = 1
+		if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] {
+			CandyAmount[i] = CandyAmount[i-1] + 1
 		}
 	}
-	result := total(score)
-	return result
+
+	return int64(sum(CandyAmount))
 }
-func total(score []int32) int64 {
-	var total int32 = 0
+
+func sum(score []int) int {
 	for i := 0; i < len(score); i++ {
 		total += score[i]
 	}
-	return int64(total)
-
+	return total
 }
+
 func main() {
 
-	// reader size setting
-	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
-	os.Setenv("OUTPUT_PATH", "input")
-	stdout, err := os.Create(os.Getenv("OUTPUT_PATH"))
+	// 아이들의 score 값 읽어오기
+	dat, err := os.Open("./test_writer.txt")
 	checkError(err)
-	defer stdout.Close()
 
-	writer := bufio.NewWriterSize(stdout, 1024*1024)
+	// 파일 읽기
+	reader := bufio.NewReaderSize(dat, 1024*1024)
 
+	// 맨처음 숫자를 아이들 수라고 생각함
 	nTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 	checkError(err)
-
-	// n is 아이 수
 	n := int32(nTemp)
-
 	var arr []int32
 
+	// 그 이후 숫자들을 아이들 점수라고 생각하고 배열에 넣음
 	for i := 0; i < int(n); i++ {
-
 		arrItemTemp, err := strconv.ParseInt(readLine(reader), 10, 64)
 		checkError(err)
 
-		// arrItem is 한 아이의 score
 		arrItem := int32(arrItemTemp)
-
-		// 여러 아이의 score array
 		arr = append(arr, arrItem)
-
 	}
+
+	// 캔디개수 배열
+	CandyAmount = make([]int, n)
+
+	// 맨 앞 사람에게 1개 줌 (default 1개)
+	CandyAmount[0] = 1
 
 	result := candies(n, arr)
 
-	//fmt.Fprintf(writer, "%d\n", result)
-	fmt.Println(writer, result)
-	writer.Flush()
+	fmt.Println(result)
 
 }
-
 func readLine(reader *bufio.Reader) string {
 
 	str, _, err := reader.ReadLine()

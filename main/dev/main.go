@@ -1,4 +1,4 @@
-package main
+package dev
 
 import (
 	"bufio"
@@ -18,12 +18,16 @@ var total int
 // 뒷쪽아이 캔디수 하나 더 주고 다시 그 뒤아이로..
 func adjustCandy(i int, arr []int32, candyCount []int) {
 	if i < 0 {
+		fmt.Println("step3  arr = ", CandyAmount)
 		return
 	}
+
 	if (arr[i] > arr[i+1]) && (candyCount[i] <= candyCount[i+1]) {
+		fmt.Println("step4  arr = ", CandyAmount)
 		candyCount[i]++
 		adjustCandy(i-1, arr, candyCount)
 	}
+	fmt.Println("step5  arr = ", CandyAmount)
 	return
 }
 
@@ -34,8 +38,13 @@ func candies(n int32, arr []int32) int64 {
 
 	for i := 1; i < int(n); i++ {
 		CandyAmount[i] = 1
+		fmt.Println("arr = ", arr)
+		fmt.Println("step1  arr = ", CandyAmount, "i = ", i)
+		// 현재아이의 스코어가 크면 사탕수를 올려줌
+		// 현재아이보다 그전아이가 더 크면 함수호출
 		if adjustCandy(i-1, arr, CandyAmount); arr[i] > arr[i-1] {
 			CandyAmount[i] = CandyAmount[i-1] + 1
+			fmt.Println("step2  arr = ", CandyAmount, "i = ", i)
 		}
 	}
 
